@@ -1,6 +1,9 @@
-export * from './Tasks/useCompleteTask/useCompleteTask';
-export * from './Tasks/useCreateTask/useCreateTask';
-export * from './Tasks/useDeleteTaskById/useDeleteTaskById';
-export * from './Tasks/useGetTaskById/useGetTaskById';
-export * from './Tasks/useListTasks/useListTasks';
+export * from './Planet/createPlanetUseCase';
+export * from './Planet/getPlanetByIdUseCase';
+export * from './Planet/deletePlanetByIdUseCase';
+export * from './Planet/listPlanetUseCase';
 
+export * from './Storage/createStoragesUseCase';
+export * from './Storage/deleteStorageByIdUseCase';
+export * from './Storage/getStorageByIdUseCase';
+export * from './Storage/listStoragesUseCase';
