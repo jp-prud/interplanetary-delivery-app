@@ -28,9 +28,6 @@ export function TabNavigationStack() {
       tabBar={renderTabBar}
       initialRouteName="HomeScreen">
       <Screen name="HomeScreen" component={HomeScreen} />
-
-      {/* <Screen name="ListScreen" component={ListScreen} />
-      <Screen name="ProfileScreen" component={ProfileScreen} /> */}
     </Navigator>
   );
 }

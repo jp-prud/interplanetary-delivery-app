@@ -5,9 +5,6 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 
-export type AuthStackParamList = {
-  SignInScreen: undefined;
-};
 
 export type AppStackParamList = {
   AppTabNavigator: undefined;
@@ -27,10 +24,7 @@ export type AppTabNavigatorParamList = {
 export type AppScreenProps<RouteScreenName extends keyof AppStackParamList> =
   NativeStackScreenProps<AppStackParamList, RouteScreenName>;
 
-export type AuthScreenProps<RouteScreenName extends keyof AuthStackParamList> =
-  NativeStackScreenProps<AuthStackParamList, RouteScreenName>;
-
-export type RootStackParamList = AuthStackParamList & AppStackParamList;
+export type RootStackParamList = AppStackParamList;
 
 export type AppTabScreenProps<
   RouteName extends keyof AppTabNavigatorParamList,

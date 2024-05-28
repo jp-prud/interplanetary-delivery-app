@@ -19,18 +19,4 @@ export const mappedScreensToProps: Record<
       unfocused: 'search',
     },
   },
-  // ListScreen: {
-  //   label: 'Favoritos',
-  //   icon: {
-  //     focused: 'favorite',
-  //     unfocused: 'favorite',
-  //   },
-  // },
-  // ProfileScreen: {
-  //   label: 'Perfil',
-  //   icon: {
-  //     focused: 'user',
-  //     unfocused: 'user',
-  //   },
-  // },
 };

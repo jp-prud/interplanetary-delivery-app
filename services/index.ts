@@ -1,6 +1,4 @@
 export * from './utils/HttpClient';
 
-export * from './StorageService/implementation/MMKVStorage';
-export * from './StorageService/storage';
-
-export * from './TaskService/TaskService';
+export * from './PlanetService/PlanetService';
+export * from './StorageService/StorageService'
