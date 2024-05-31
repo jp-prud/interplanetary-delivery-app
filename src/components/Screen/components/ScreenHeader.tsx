@@ -19,7 +19,7 @@ export function ScreenHeader({
         flexDirection="row"
         alignItems="center"
         onPress={goBack}>
-        <Box>
+        <Box style={{ transform: [{ scaleX: -1 }] }}>
           <Icon name="chevron" color="primary" />
         </Box>
 

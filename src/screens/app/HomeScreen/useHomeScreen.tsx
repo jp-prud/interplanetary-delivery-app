@@ -1,92 +1,30 @@
-import { useCallback, useMemo } from 'react';
+import { useState } from 'react';
 
-import { useToastService } from '@context';
-import {
-  useDeleteTaskById,
-  useGetTaskById,
-  useListTasks
-} from '@useCases';
-import { useForm } from 'react-hook-form';
-
-import { useBottomSheet, useDebounce, useGetRangeDate } from '@hooks';
-
-import { searchFormDefaultValues } from './searchFormSchema';
+import { BaseLocation } from '@types';
+import { useListLocationsUseCase } from '@useCases';
 
 export function useHomeScreen() {
-  const { today } = useGetRangeDate();
+  const { listLocationsData, isLoading, listLocationsRefetch } =
+    useListLocationsUseCase();
 
-  const {
-    tasks,
-    numberOfCompletedTasks,
-    numberOfTotalTasks,
-    isLoading,
-    getLisTasks,
-  } = useListTasks(today);
+  const [selectedLocationId, setSelectedLocationId] = useState<
+    BaseLocation['id'] | null
+  >(null);
 
-  const { showToast } = useToastService();
+  function onSelectLocation(locationId: BaseLocation['id']) {
+    setSelectedLocationId(locationId);
+  }
 
-  const {
-    task: selectedTask,
-    isLoading: selectedTaskLoading,
-    gatTask,
-  } = useGetTaskById();
-
-  const { bottomSheetRef } = useBottomSheet();
-
-  const { control: searchControl, watch: searchWatch } = useForm({
-    mode: 'onChange',
-    defaultValues: searchFormDefaultValues,
-  });
-
-
-  const searchTerm = useDebounce(searchWatch('searchTerm'), 260);
-
-  const filteredTasks = useMemo(() => {
-    if (!tasks) {
-      return [];
-    }
-
-    if (!searchTerm) {
-      return tasks;
-    }
-
-    return tasks.filter(task =>
-      task.descriptions.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-  }, [tasks, searchTerm]);
-
-  const onDetailsTask = useCallback(
-    async (taskId: string) => {
-      bottomSheetRef.current?.expand();
-      await gatTask(taskId);
-    },
-    [gatTask, bottomSheetRef],
-  );
-
-  const { deleteTaskById } = useDeleteTaskById({
-    onSuccess() {
-      showToast({
-        message: 'Task deleted',
-        type: 'success',
-        position: 'bottom',
-      });
-
-      bottomSheetRef.current?.close();
-    },
-  });
+  function onClearSelectedLocation() {
+    setSelectedLocationId(null);
+  }
 
   return {
-    filteredTasks,
-    control: searchControl,
-    searchTerm,
-    numberOfCompletedTasks,
-    numberOfTotalTasks,
+    listLocationsData,
     isLoading,
-    onDetailsTask,
-    getLisTasks,
-    bottomSheetRef,
-    selectedTask,
-    selectedTaskLoading,
-    deleteTaskById,
+    selectedLocationId,
+    onSelectLocation,
+    onClearSelectedLocation,
+    listLocationsRefetch,
   };
 }

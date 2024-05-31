@@ -1,3 +1,56 @@
 {
-  
+  "locations": [
+    {
+      "id": "1",
+      "planet": "mars",
+      "lotNumber": "9752",
+      "name": "Martian Base"
+    },
+    {
+      "id": "2",
+      "planet": "earth",
+      "address": {
+        "street": "Simmons St",
+        "city": "Los Angeles",
+        "country": "USA"
+      },
+      "name": "Earth 410"
+    },
+    {
+      "id": "3",
+      "planet": "mars",
+      "lotNumber": "5371",
+      "name": "Interplanetary"
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "1",
+      "from": {
+        "planet": "Terra",
+        "locationId": 1
+      },
+      "to": {
+        "planet": "Marte",
+        "lotNumber": "1234"
+      },
+      "item": "Microchips",
+      "quantity": 1000,
+      "status": "Em trânsito"
+    },
+    {
+      "id": "2",
+      "from": {
+        "planet": "Marte",
+        "lotNumber": "5678"
+      },
+      "to": {
+        "planet": "Terra",
+        "locationId": 2
+      },
+      "item": "Peças de reposição",
+      "quantity": 500,
+      "status": "Aguardando envio"
+    }
+  ]
 }

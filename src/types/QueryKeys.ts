@@ -1,3 +1,4 @@
 export const QueryKeys = {
-  getTasks: 'GET_TASKS',
+  getLocations: 'GET_LOCATIONS',
+  getLocationByid: 'GET_LOCATION_BY_ID',
 };

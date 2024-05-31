@@ -18,7 +18,7 @@ export function useBottomSheet() {
   );
 
   const onClose = useCallback(() => {
-    bottomSheetRef.current?.dismiss();
+    bottomSheetRef.current?.close();
   }, []);
 
   const onOpen = useCallback(() => {

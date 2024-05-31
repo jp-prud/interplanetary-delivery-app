@@ -7,10 +7,12 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest",
     "art:3000": "adb reverse tcp:3000 tcp:3000",
     "dev:server": "npx json-server --watch ./src/server/db.json",
-    "dev": "yarn art:3000 '&&' yarn start"
+    "dev": "yarn art:3000 '&&' yarn start",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --verbose --coverage -u"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4",
@@ -23,9 +25,11 @@
     "@tanstack/react-query": "^5.28.4",
     "axios": "^1.6.8",
     "date-fns": "^3.6.0",
+    "lodash": "^4.17.21",
     "react": "18.2.0",
     "react-hook-form": "^7.51.1",
     "react-native": "0.73.6",
+    "react-native-bootsplash": "^5.5.3",
     "react-native-gesture-handler": "^2.15.0",
     "react-native-mmkv": "^2.12.2",
     "react-native-reanimated": "^3.8.1",
@@ -47,6 +51,7 @@
     "@testing-library/react-native": "^12.4.4",
     "@tsconfig/react-native": "^3.0.3",
     "@types/jest": "^29.5.12",
+    "@types/lodash": "^4.17.4",
     "@types/react": "^18.2.6",
     "@types/react-test-renderer": "^18.0.0",
     "babel-jest": "^29.6.3",
@@ -64,5 +69,8 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "resolutions": {
+    "react-native-reanimated": "^3.8.1"
   }
 }

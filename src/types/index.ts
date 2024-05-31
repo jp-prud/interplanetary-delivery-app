@@ -1,5 +1,4 @@
-export * from './Storage'
-export * from './Planet'
+export * from './LocationProps';
 export * from './MutationKeys';
 export * from './QueryKeys';
 export * from './useMutation';

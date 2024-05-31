@@ -1,5 +1,6 @@
 import { Pressable } from 'react-native';
 
+import { IconName } from '@components';
 import { useAppTheme } from '@hooks';
 import { ThemeColors } from '@theme';
 
@@ -34,6 +35,7 @@ export interface IconProps {
   color?: ThemeColors;
   size?: number;
   onPress?(): void;
+  testID?: string;
 }
 
 export function Icon({
@@ -41,21 +43,28 @@ export function Icon({
   color = 'backgroundContrast',
   size,
   onPress,
+  testID,
 }: IconProps) {
   const { colors } = useAppTheme();
   const SVGIcon = iconRegistry[name];
 
-  const Icon = <SVGIcon color={colors[color]} size={size} />;
+  const Icon = (
+    <SVGIcon color={colors[color]} size={size} testID={testID || 'Icon'} />
+  );
 
   if (onPress) {
     return (
-      <Pressable testID="Icon" hitSlop={10} onPress={onPress} style={{}}>
+      <Pressable
+        hitSlop={10}
+        onPress={onPress}
+        style={{}}
+        testID={testID || 'Icon'}>
         {Icon}
       </Pressable>
     );
   }
 
-  return <Box testID="Icon">{Icon}</Box>;
+  return <Box>{Icon}</Box>;
 }
 
 const iconRegistry = {

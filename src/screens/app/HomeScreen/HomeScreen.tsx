@@ -1,83 +1,103 @@
 import React from 'react';
+import { FlatList, ListRenderItemInfo, RefreshControl } from 'react-native';
 
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import { BaseLocaion } from '@types';
 
-import { Box, FormTextInput, Icon, Screen, Text, TitleBar } from '@components';
+import {
+  Box,
+  Button,
+  Screen,
+  StorageLocationItem,
+  Text,
+  TitleBar,
+} from '@components';
 import { useBottomSheet } from '@hooks';
 import { AppScreenProps } from '@routes';
 
-import { AddTaskButton, SliderTaskList, TaskDetails } from './components';
+import { LocationDetails } from './components';
 import { useHomeScreen } from './useHomeScreen';
 
 export function HomeScreen({ navigation }: AppScreenProps<'HomeScreen'>) {
   const {
-    filteredTasks,
-    control,
+    listLocationsData,
     isLoading,
-    searchTerm,
-    onDetailsTask,
-    bottomSheetRef,
-    selectedTask,
-    selectedTaskLoading,
-    deleteTaskById,
+    selectedLocationId,
+    onSelectLocation,
+    onClearSelectedLocation,
+    listLocationsRefetch,
   } = useHomeScreen();
 
-  const { renderBackdrop, BOTTOM_SHEET_STYLES } = useBottomSheet();
+  const {
+    bottomSheetRef,
+    BOTTOM_SHEET_STYLES,
+    renderBackdrop,
+    onOpen,
+    onClose,
+  } = useBottomSheet();
+
+  function renderItem({ item }: ListRenderItemInfo<BaseLocaion>) {
+    return (
+      <StorageLocationItem
+        location={item}
+        onHandlePressDetailsLocation={locationId => {
+          onSelectLocation(locationId);
+
+          onOpen();
+        }}
+      />
+    );
+  }
+
+  function renderEmptyList() {
+    return (
+      <Box justifyContent="center" alignItems="center" flex={1}>
+        <Text preset="paragraphMedium" color="neutral700" mb="s16" bold>
+          No locations found
+        </Text>
+
+        <Button
+          text="Add"
+          onPress={() => navigation.navigate('CreateLocationScreen')}
+        />
+      </Box>
+    );
+  }
 
   return (
     <Screen isLoading={isLoading}>
-      <AddTaskButton />
-      <Box
-        height={32}
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="space-between"
-        mb="s32">
-        <Icon
-          name="house"
-          onPress={() => navigation.navigate('ProfileScreen')}
-        />
-
-        <Icon
-          name="gearshape"
-          onPress={() => navigation.navigate('SettingsScreen')}
-        />
+      <Box mb="s32">
+        <Text preset="headingMedium">Storage address</Text>
+        <Text>Overview options to storage address</Text>
       </Box>
 
-      <FormTextInput
-        control={control}
-        name="searchTerm"
-        placeholder="Search for a task"
-        RightComponent={<Icon name="search" />}
-      />
-
-      <Box
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="space-between">
-        <TitleBar title="Your tasks" mb="s32" mt="s32" />
-
-        <Box
-          width={28}
-          height={28}
-          backgroundColor="neutral200"
-          borderRadius="s16"
-          justifyContent="center"
-          alignItems="center">
-          <Text semiBold>{filteredTasks.length}</Text>
-        </Box>
-      </Box>
-
-      <SliderTaskList
-        data={filteredTasks}
-        searchTerm={searchTerm}
-        onPressItem={onDetailsTask}
+      <FlatList
+        ListHeaderComponent={
+          <TitleBar
+            title="Address"
+            linkText="Add address"
+            onPress={() => navigation.navigate('CreateLocationScreen')}
+            hasIcon
+          />
+        }
+        refreshControl={
+          <RefreshControl
+            refreshing={isLoading}
+            onRefresh={listLocationsRefetch}
+          />
+        }
+        data={listLocationsData}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        ListEmptyComponent={renderEmptyList}
+        contentContainerStyle={{ gap: 16, flex: 1 }}
       />
 
       <BottomSheet
         ref={bottomSheetRef}
         enablePanDownToClose
-        snapPoints={['50%', '75%']}
+        onClose={onClearSelectedLocation}
+        snapPoints={['50%']}
         backdropComponent={renderBackdrop}
         animationConfigs={{
           duration: 400,
@@ -85,10 +105,9 @@ export function HomeScreen({ navigation }: AppScreenProps<'HomeScreen'>) {
         containerStyle={BOTTOM_SHEET_STYLES.container}
         index={-1}>
         <BottomSheetView>
-          <TaskDetails
-            task={selectedTask!}
-            isLoading={selectedTaskLoading}
-            onDeleteTask={deleteTaskById}
+          <LocationDetails
+            locationId={selectedLocationId!}
+            onHandleClose={onClose}
           />
         </BottomSheetView>
       </BottomSheet>

@@ -5,14 +5,12 @@ import {
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
 
-
 export type AppStackParamList = {
   AppTabNavigator: undefined;
   HomeScreen: undefined;
-  SettingsScreen: undefined;
-  ProfileScreen: undefined;
-  EditTaskScreen: {
-    taskId: string;
+  CreateLocationScreen: undefined;
+  EditLocationScreen: {
+    locationId: string;
   };
 };
 

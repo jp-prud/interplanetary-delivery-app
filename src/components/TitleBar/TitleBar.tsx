@@ -1,9 +1,10 @@
-import { Box, BoxProps, LinkStandAlone, Text } from '@components';
+import { Box, BoxProps, LinkStandAlone, Text, TextVariants } from '@components';
 
 export interface TitleBarProps {
   title: string;
   linkText?: string;
   hasIcon?: boolean;
+  preset?: TextVariants;
   onPress?: () => void;
 }
 
@@ -12,6 +13,7 @@ export function TitleBar({
   linkText,
   onPress,
   hasIcon = false,
+  preset = 'paragraphLarge',
   ...boxProps
 }: TitleBarProps & BoxProps) {
   return (
@@ -21,7 +23,7 @@ export function TitleBar({
       alignItems="center"
       justifyContent="space-between"
       {...boxProps}>
-      <Text preset="paragraphLarge" bold>
+      <Text preset={preset} bold>
         {title}
       </Text>
 

@@ -3,10 +3,9 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import {
+  CreateLocationScreen,
+  EditLocationScreen,
   HomeScreen,
-  ProfileScreen,
-  SettingsScreen,
-  EditTaskScreen,
 } from '../screens';
 
 import {
@@ -20,14 +19,13 @@ const { Navigator, Screen } = createNativeStackNavigator<AppStackParamList>();
 export function AppStackScreen() {
   return (
     <Navigator
-      initialRouteName="HomeScreen"
+      initialRouteName="AppTabNavigator"
       screenOptions={NAVIGATOR_STACK_SCREEN_OPTIONS}>
       <Screen name="AppTabNavigator" component={TabNavigationStack} />
 
       <Screen name="HomeScreen" component={HomeScreen} />
-      <Screen name="EditTaskScreen" component={EditTaskScreen} />
-      <Screen name="SettingsScreen" component={SettingsScreen} />
-      <Screen name="ProfileScreen" component={ProfileScreen} />
+      <Screen name="CreateLocationScreen" component={CreateLocationScreen} />
+      <Screen name="EditLocationScreen" component={EditLocationScreen} />
     </Navigator>
   );
 }

@@ -38,6 +38,7 @@ export function TextInput({
   const inputRef = useRef<RNTextInput>(null);
 
   const $textInputContainer: BoxProps = {
+    backgroundColor: 'whiteTint1000',
     borderWidth: errorMessage ? 2 : 1,
     borderColor: errorMessage ? 'error' : 'neutral300',
     borderRadius: 's16',
@@ -61,7 +62,7 @@ export function TextInput({
 
           <RNTextInput
             ref={inputRef}
-            placeholderTextColor={colors.neutral1000}
+            placeholderTextColor={colors.neutral600}
             style={$textInputStyle}
             autoCapitalize="none"
             {...rNTextInputProps}

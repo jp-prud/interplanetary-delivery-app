@@ -1,5 +1,4 @@
-export * from './app/EditTaskScreen/EditTaskScreen';
+export * from './app/CreateLocationScreen/CreateLocationScreen';
+export * from './app/EditLocationScreen/EditLocationScreen';
 export * from './app/HomeScreen/HomeScreen';
-export * from './app/ProfileScreen/ProfileScreen';
-export * from './app/SettingsScreen/SettingsScreen';
 

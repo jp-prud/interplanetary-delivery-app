@@ -16,7 +16,7 @@ export function ToastProvider({ children }: React.PropsWithChildren<{}>) {
   const showToast = useCallback((_toast: ToastProps) => {
     setToast(_toast);
 
-    setTimeout(() => setToast(null), _toast.duration || initialToastDuration);
+    setTimeout(() => setToast(null), _toast?.duration || initialToastDuration);
   }, []);
 
   const hideToast = useCallback(({ duration }: HideToastProps) => {
