@@ -17,9 +17,9 @@ Aplicativo criado para gerenciar delivery interplanetário
 ---
 
 ## Telas Vertical
-| ![Page1](./.github/resources/Spash.png)  | ![Page2](./.github/resources/Listagem.png) | ![Page3](./.github/resources/Detalhes.png) | ![Page4](./.github/resources/Criacao.png) | ![Page6](./.github/resources/Edit.png) | ![Page6](./.github/resources/Delecao.png)
-|:---:|:---:|:---:|:---:|:---:|
-| Splash Screen | Lista de Localizações | Detalhes | Criação | Edição | Deleção
+| ![Page1](./.github/resources/Spash.png)  | ![Page2](./.github/resources/Listagem.png) | ![Page3](./.github/resources/Detalhes.png) | ![Page4](./.github/resources/Criacao.png) | ![Page5](./.github/resources/Edit.png) | ![Page6](./.github/resources/Delecao.png)
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| Splash Screen | Listagem | Detalhes | Criação | Edição | Deleção |
 
 ## Chamadas API
 O aplicativo utiliza o pacote [```JSON Server```](https://www.npmjs.com/package/json-server) para chamadas API REST, por possuir uma implementação fácil, código limpo e legível.
