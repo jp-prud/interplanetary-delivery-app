@@ -27,11 +27,14 @@ O aplicativo utiliza o pacote [```JSON Server```](https://www.npmjs.com/package/
 Facilita também a criação de testes unitários.
 
 ## Avisos no app
-O pacote [```Acr.UserDialogs```](https://github.com/aritchie/userdialogs) é responsável pela exibição de toasts. Diferente da implementação nativa, ele possui um visual moderno e de fácil estilização.
+O pacote [```JSON Server```](https://www.npmjs.com/package/json-server) é responsável pela criação da API. Para rodar corretamente o projeto, execute o comando `yarn dev:server`.
+
+Para que funcione no Android, você precisa mapear a porta do da sua máquina para a do emulador. Quando o emulador estiver aberto basta rodar o comando `yarn art:3000`
+
+Além disso, algum sistemas operacionais não conseguem rodar com o endereço "localhost", mas basta trocar para o IP local da API. No me caso é o endereço http://127.0.0.1:3333. Você encontra esse endereço após rodar o comando yarn dev no projeto da API.
 
 ### Possíveis erros ⚠️
 Acredito que há alguns erros na tela de criação, busquei manter os schemas adaptados a partir do "Planeta", o que pode ter dado algum erro.
- 
 
 ## Comentários finais. 💬
 - O aplicativo é distribuido na versão Android, e iOS.
